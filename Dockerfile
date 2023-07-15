@@ -1,7 +1,10 @@
 FROM alpine:latest
 
 # 创建非root用户
-RUN addgroup -S myusergroup && adduser -S -G myusergroup myuser -u 10014
+ARG USER_ID=10001
+ARG GROUP_ID=10001
+
+RUN addgroup -S myusergroup && adduser -S -G myusergroup -u $USER_ID myuser
 
 # 设置工作目录和文件权限
 COPY ./content /workdir/
